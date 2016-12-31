@@ -1,0 +1,42 @@
+﻿namespace Msgpack
+{
+    public enum TokenType
+    {
+        PositiveFixint,
+        FixMap,
+        FixArray,
+        FixStr,
+        Nil,
+        False,
+        True,
+        Binary8,
+        Binary16,
+        Binary32,
+        Ext8,
+        Ext16,
+        Ext32,
+        Float32,
+        Float64,
+        Uint8,
+        Uint16,
+        Uint32,
+        Uint64,
+        Int8,
+        Int16,
+        Int32,
+        Int64,
+        Fixext1,
+        Fixext2,
+        Fixext4,
+        Fixext8,
+        Fixext16,
+        Str8,
+        Str16,
+        Str32,
+        Array16,
+        Array32,
+        Map16,
+        Map32,
+        NegativeFixint
+    }
+}
