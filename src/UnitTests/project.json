@@ -1,6 +1,8 @@
 {
-  "version": "1.0.0-*",
+  "version": "0.1.0-*",
   "testRunner": "xunit",
+  "authors": [ "Andrew Behn" ],
+  "description": "A msgpack Serializer/Deserializer for .Net Core",
   "dependencies": {
     "xunit": "2.2.0-beta2-build3300",
     "Msgpack.Net": "0.1.0-*",
