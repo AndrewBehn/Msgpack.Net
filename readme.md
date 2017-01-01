@@ -4,23 +4,19 @@ Msgpack.Net is a C# / .Net Core implementation of msgpack.  The API is very simi
 
 ## Installation
 
-Install via nuget, with package name 'Msgpack.Net'
+Though the packages have not been published yet, the intended way to eventually consume this library will be through NuGet.
 
 ## Usage
 
-TODO: Write usage instructions
+The easiest wayt to use Msgpack.Net is through the MsgpackConvert class.  This class simply provides a static wrapper around a default MsgpackSerializer instance, and also allows the user to pass custom MsgpackSerializerSettings for their operation.  If a user would like more control over how a particular type is serialized, simply write a custom MsgpackConverter, and add it to the Serializer's ConverterCache.  Alternatively, you can decorate a type with a TypeConverter attribute to control its serialization.  Finally, for the lowest level of control, write a custom MgspackReader or MsgpackWriter to control the way that individual components of the binary msgpack representation are read and written. 
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+If you have found a bug, or an have an idea for an improvement, please fork the repo, make the changes and open a pull-request.  The current github settings are very strict about ensuring that all builds and tests pass before a PR can be merged.  In addition to satisfying these requirements I will require that any ug fixes have regression tests, and any new features have new tests to verify their implementation.
 
 ## History
 
-Msgpack.Net was created to provide a powerful yet simple msgpack serializer/deserializer.  The Json.Net API is largely mimicked to aid developers in quickly mastering the library.
+Msgpack.Net was created to provide a powerful yet simple msgpack serializer/deserializer.  The API and source code was heavily inspired by Json.Net, though the code here should be a good deal simpler.  
 
 ## Credits
 
