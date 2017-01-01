@@ -1,2 +1,3 @@
-build_script: "./build.bat"
+version : '0.1.0.{build}'
+build_script: ./build.bat %APPVEYOR_BUILD_VERSION%
 test: off
