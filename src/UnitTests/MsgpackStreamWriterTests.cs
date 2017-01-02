@@ -20,7 +20,7 @@ namespace UnitTests
 
         public MsgpackStreamWriter Writer { get; }
         public Stream AllBytes => new MemoryStream(_written.ToArray());
-        public MToken ReadBack() => new MsgpackTokenParser().ReadToken(AllBytes);
+        public MToken ReadBack() => new MTokenParser().ReadToken(AllBytes);
         public void Dispose() => _written.Dispose();
     }
 

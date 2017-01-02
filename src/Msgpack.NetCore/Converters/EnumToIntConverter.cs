@@ -6,17 +6,13 @@ namespace Msgpack.Converters
 {
     public class EnumToIntConverter : MsgpackConverter
     {
-        public EnumToIntConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return objectType.GetTypeInfo().IsEnum;
         }
 
         public override void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             var backingPrimitiveType = Enum.GetUnderlyingType(objectType);
             var convertedValue = Convert.ChangeType(value, backingPrimitiveType);

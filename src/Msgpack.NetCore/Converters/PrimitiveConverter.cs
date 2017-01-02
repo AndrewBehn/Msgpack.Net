@@ -23,10 +23,7 @@ namespace Msgpack.Converters
                 {typeof(string), PrimitiveTypeCode.String},
                 {typeof(byte[]), PrimitiveTypeCode.Bytes}
             };
-
-        public PrimitiveConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
+        
 
         public override bool CanConvert(Type objectType)
         {
@@ -34,7 +31,7 @@ namespace Msgpack.Converters
         }
 
         public override void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             PrimitiveTypeCode typeCode;
             if (!TypeCodeMap.TryGetValue(objectType, out typeCode))

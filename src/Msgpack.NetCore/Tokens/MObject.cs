@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Msgpack.Token
 {
-    public class MObject : MToken // MContainer
+    public class MObject : MToken
     {
         public MObject(TokenType type, IEnumerable<KeyValuePair<MToken, MToken>> properties) : base(type)
         {
@@ -71,13 +71,9 @@ namespace Msgpack.Token
             return tokens.GetEnumerator();
         }
 
-        public static MObject Parse(byte[] input)
-        {
-            using (var stream = new MemoryStream(input))
-            {
-                var token = MsgpackTokenParser.Instance.ReadToken(stream);
-                return (MObject)token;
-            }
-        }
+        public static MValue Parse(byte[] input) => (MValue)MTokenParser.Instance.ReadToken(input);
+
+        public static MValue Load(MsgpackTokenReader reader) => (MValue)reader.ReadNext();
+
     }
 }

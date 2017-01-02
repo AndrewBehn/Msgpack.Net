@@ -40,14 +40,9 @@ namespace Msgpack.Token
                 item.WriteTo(writer, serializer);
         }
 
-        public static MArray Parse(byte[] input)
-        {
-            using (var stream = new MemoryStream(input))
-            {
-                var token = MsgpackTokenParser.Instance.ReadToken(stream);
-                return (MArray)token;
-            }
-        }
+        public static MArray Parse(byte[] input) => (MArray)MTokenParser.Instance.ReadToken(input);
+
+        public static MArray Load(MsgpackReader reader) => (MArray)reader.ReadNext();
 
         public override IEnumerator<MToken> GetEnumerator()
         {
@@ -58,8 +53,6 @@ namespace Msgpack.Token
             }
 
             return tokens.GetEnumerator();
-
-            //return GetEnumerator();
         }
     }
 }

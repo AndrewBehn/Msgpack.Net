@@ -7,21 +7,23 @@ namespace Msgpack.Converters
     {
         protected ConverterCache ConverterCache;
 
-        protected MsgpackConverter(ConverterCache converterCache)
+        protected MsgpackConverter() { }
+
+        public void Initialize(ConverterCache cache)
         {
-            ConverterCache = converterCache;
+            ConverterCache = cache;
         }
 
         public abstract bool CanConvert(Type objectType);
 
         public abstract void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings);
+            MsgpackConverterSettings settings);
 
         public abstract object ReadMsgpack(MsgpackReader reader, Type objectType);
 
         public T ReadMsgpack<T>(MsgpackReader reader)
         {
-            return (T) ReadMsgpack(reader, typeof(T));
+            return (T)ReadMsgpack(reader, typeof(T));
         }
     }
 }

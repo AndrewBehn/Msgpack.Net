@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using Msgpack.Converters;
+using Msgpack.Net.Extensions;
 
 namespace Msgpack.Serializer
 {
     public class MsgpackSerializer
     {
-        private readonly ConverterCache _cache = new ConverterCache();
-        private readonly MsgpackSerializerSettings _settings;
+        private readonly ConverterCache _cache;
+        private readonly MsgpackConverterSettings _settings;
 
-        public MsgpackSerializer(MsgpackSerializerSettings settings)
+        public MsgpackSerializer(MsgpackConverterSettings settings, MsgpackConverter[] converters = null)
         {
             _settings = settings;
+            _cache = new ConverterCache(converters);
         }
 
-        public MsgpackSerializer() : this(MsgpackSerializerSettings.Default)
+        public MsgpackSerializer() : this(MsgpackConverterSettings.Default)
         {
         }
 
@@ -37,7 +39,11 @@ namespace Msgpack.Serializer
 
         public object DeserializeObject(MsgpackReader reader, Type objectType)
         {
-            var converter = _cache.GetConverter(objectType);
+            MsgpackConverter converter = null;
+            if (objectType.HasTypeConverterAttribute())
+                converter = (MsgpackConverter)Activator.CreateInstance(objectType.GetTypeConverterAttributeConverterType());
+            else
+                converter = _cache.GetConverter(objectType);
             return converter.ReadMsgpack(reader, objectType);
         }
     }

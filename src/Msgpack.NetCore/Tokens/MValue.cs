@@ -64,14 +64,8 @@ namespace Msgpack.Token
                 throw new ArgumentException();
         }
 
-        public MValue(TokenType type, byte value) : this(type, (object)value)
-        {            
-        }
-
-        public MValue(TokenType type, ushort value) : this(type, (object)value)
-        {
-           
-        }
+        public MValue(TokenType type, byte value) : this(type, (object)value) { }
+        public MValue(TokenType type, ushort value) : this(type, (object)value) { }
         public MValue(TokenType type, uint value) : this(type, (object)value) { }
         public MValue(TokenType type, ulong value) : this(type, (object)value) { }
         public MValue(TokenType type, sbyte value) : this(type, (object)value) { }
@@ -83,13 +77,9 @@ namespace Msgpack.Token
         public MValue(TokenType type, string value) : this(type, (object)value) { }
         public MValue(TokenType type, byte[] value) : this(type, (object)value) { }
 
-
         public object Value { get; }
 
-        public override string ToString()
-        {
-            return string.Format($"{TokenType}: {Value}");
-        }
+        public override string ToString() =>  string.Format($"{TokenType}: {Value}");
 
         public override void WriteTo(MsgpackWriter writer, MsgpackSerializer serializer = null)
         {
@@ -97,18 +87,10 @@ namespace Msgpack.Token
             serializer.Serialize(writer, Value, Value.GetType());
         }
 
-        public override IEnumerator<MToken> GetEnumerator()
-        {
-            return new List<MToken>() { this }.GetEnumerator();
-        }
+        public override IEnumerator<MToken> GetEnumerator() => new List<MToken>() { this }.GetEnumerator();
 
-        public static MValue Parse(byte[] input)
-        {
-            using (var stream = new MemoryStream(input))
-            {
-                var token = MsgpackTokenParser.Instance.ReadToken(stream);
-                return (MValue)token;
-            }
-        }
+        public static MValue Parse(byte[] input) => (MValue)MTokenParser.Instance.ReadToken(input);
+
+        public static MValue Load(MsgpackTokenReader reader) => (MValue)reader.ReadNext();
     }
 }

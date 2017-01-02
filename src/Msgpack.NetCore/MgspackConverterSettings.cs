@@ -1,4 +1,4 @@
-﻿namespace Msgpack.Serializer
+﻿namespace Msgpack
 {
     public enum NullValueHandling
     {
@@ -12,9 +12,9 @@
         Standard
     }
 
-    public class MsgpackSerializerSettings
+    public class MsgpackConverterSettings
     {
-        public static readonly MsgpackSerializerSettings Default = new MsgpackSerializerSettings();
+        public static readonly MsgpackConverterSettings Default = new MsgpackConverterSettings();
         public NullValueHandling NullValueHandling { get; set; } = NullValueHandling.Ignore;
         public NameValueHandling NameValueHandling { get; set; } = NameValueHandling.Standard;
     }

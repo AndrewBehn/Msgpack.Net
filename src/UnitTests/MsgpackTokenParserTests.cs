@@ -21,7 +21,7 @@ namespace UnitTests
 
         public MsgpackStreamWriter Writer { get; }
         public Stream AllBytes => new MemoryStream(_written.ToArray());
-        public MToken ReadBack() => new MsgpackTokenParser().ReadToken(AllBytes);
+        public MToken ReadBack() => new MTokenParser().ReadToken(AllBytes);
         public void Dispose() => _written.Dispose();
     }
 
@@ -481,9 +481,7 @@ namespace UnitTests
         {
             WriteReadAndAssertMap(ushort.MaxValue + 1, TokenType.Map32);
         }
-
-
-
+        
         public static void WriteReadAndAssertMap(int length, TokenType type)
         {
             using (var c = new ParserConfig())

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Msgpack
 {
-    public class ConverterCache 
+    public class ConverterCache
     {
         private readonly List<MsgpackConverter> _cache;
 
@@ -14,17 +14,30 @@ namespace Msgpack
         {
             _cache = new List<MsgpackConverter>
             {
-                new PrimitiveConverter(this),
-                new NullableConverter(this),
-                new EnumToIntConverter(this),
-                new DefaultArrayConverter(this),
-                new DefaultObjectConverter(this)
+                new PrimitiveConverter(),
+                new NullableConverter(),
+                new EnumToIntConverter(),
+                new DefaultArrayConverter(),
+                new DefaultObjectConverter()
             };
+
+            foreach (var p in _cache)
+                p.Initialize(this);
+        }
+
+        public ConverterCache(MsgpackConverter[] converters) : this()
+        {
+            if (converters != null)
+            {
+                foreach (var c in converters)
+                {
+                    c.Initialize(this);
+                    _cache.Insert(0, c);
+                }
+            }
         }
 
         public MsgpackConverter GetConverter(Type key) => _cache.First(c => c.CanConvert(key));
-
-        public void AddConverter(MsgpackConverter converter) => _cache.Insert(0, converter);
 
         public static readonly ConverterCache Default = new ConverterCache();
     }

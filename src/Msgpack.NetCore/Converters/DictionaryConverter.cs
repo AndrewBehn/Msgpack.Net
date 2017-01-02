@@ -9,17 +9,13 @@ namespace Msgpack.Converters
 {
     public class DictionaryConverter : MsgpackConverter
     {
-        public DictionaryConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return objectType.IsDictionary();
         }
 
         public override void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             if (value == null)
             {

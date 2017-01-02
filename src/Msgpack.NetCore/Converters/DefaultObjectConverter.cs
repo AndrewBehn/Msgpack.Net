@@ -11,17 +11,13 @@ namespace Msgpack.Converters
 {
     public class DefaultObjectConverter : MsgpackConverter
     {
-        public DefaultObjectConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return !PrimitiveConverter.TypeCodeMap.ContainsKey(objectType);
         }
 
         public override void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             var converterAttribute = objectType.GetTypeInfo().GetCustomAttribute<MsgpackTypeConverterAttribute>();
             if (converterAttribute != null)
@@ -36,7 +32,7 @@ namespace Msgpack.Converters
             }
         }
 
-        private void WriteDefaultMsgpack(MsgpackWriter writer, object value, Type objectType, MsgpackSerializerSettings settings)
+        private void WriteDefaultMsgpack(MsgpackWriter writer, object value, Type objectType, MsgpackConverterSettings settings)
         {
             if (value == null)
             {
