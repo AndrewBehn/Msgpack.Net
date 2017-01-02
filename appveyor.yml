@@ -3,5 +3,5 @@ build_script: ./build.bat %APPVEYOR_BUILD_VERSION%
 test: off
 
 artifacts:
- - path: 'src/Msgpack.Net/bin/Release/*.nupkg'
-   name: Msgpack.Net
+ - path: 'src/Msgpack.NetCore/bin/Release/*.nupkg'
+   name: Msgpack.NetCore

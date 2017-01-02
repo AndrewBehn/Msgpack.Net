@@ -5,7 +5,7 @@
   "description": "A msgpack Serializer/Deserializer for .Net Core",
   "dependencies": {
     "xunit": "2.2.0-beta2-build3300",
-    "Msgpack.Net": "0.1.0-*",
+    "Msgpack.NetCore": "0.1.0.0",
     "Moq": "4.6.38-alpha",
     "dotnet-test-xunit": "2.2.0-preview2-build1029"
   },

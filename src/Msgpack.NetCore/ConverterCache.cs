@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Msgpack
 {
-    public class ConverterCache
+    public class ConverterCache 
     {
         private readonly List<MsgpackConverter> _cache;
 

@@ -3,7 +3,7 @@ open Fake
 open Fake.DotNetCli
 open Fake.NuGetHelper
 
-let projects = (@".\src\Msgpack.Net", @".\src\UnitTests");
+let projects = (@".\src\Msgpack.NetCore", @".\src\UnitTests");
 let msgpackProj, unitTestProj = projects;
 let version = getBuildParamOrDefault "version" "0.1.0.0"
 
@@ -21,7 +21,7 @@ Target "Pack" (fun _ ->
                             }))
 
 Target "Default" (fun _ ->
-    trace "Building Msgpack.Net")
+    trace "Building Msgpack.NetCore")
 
 "SetVersion" ==> "Restore" ==> "Test" ==> "Pack" ==> "Default"
 

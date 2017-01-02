@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.json = global.json
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Msgpack.Net", "src\Msgpack.Net\Msgpack.Net.xproj", "{CA4464B7-9B6E-4CD3-BBE0-7B5AB05EA0A1}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Msgpack.NetCore", "src\Msgpack.NetCore\Msgpack.NetCore.xproj", "{CA4464B7-9B6E-4CD3-BBE0-7B5AB05EA0A1}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "UnitTests", "src\UnitTests\UnitTests.xproj", "{792B8F38-4D5A-4E35-AEEE-F568936CA596}"
 EndProject
