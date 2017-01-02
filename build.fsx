@@ -5,7 +5,7 @@ open Fake.NuGetHelper
 
 let projects = (@".\src\Msgpack.NetCore", @".\src\UnitTests");
 let msgpackProj, unitTestProj = projects;
-let version = getBuildParamOrDefault "version" "0.1.0.0"
+let version = getBuildParamOrDefault "version" "0.1.0-dev"
 
 Target "SetVersion" (fun _ -> SetVersionInProjectJson version (msgpackProj + "\project.json"))
 
