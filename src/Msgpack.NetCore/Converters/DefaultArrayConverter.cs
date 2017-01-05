@@ -9,17 +9,13 @@ namespace Msgpack.Converters
 {
     public class DefaultArrayConverter : MsgpackConverter
     {
-        public DefaultArrayConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return objectType.GetTypeInfo().GetInterfaces().Any(i => i == typeof(IEnumerable));
         }
 
         public override void WriteMsgpack(MsgpackWriter writer, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             if (value == null)
             {
@@ -35,7 +31,7 @@ namespace Msgpack.Converters
             {
                 var valType = val.GetType();
                 var valConverter = ConverterCache.GetConverter(valType);
-                valConverter.WriteMsgpack(writer, val, valType, MsgpackSerializerSettings.Default);
+                valConverter.WriteMsgpack(writer, val, valType, MsgpackConverterSettings.Default);
             }
         }
 

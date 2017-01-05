@@ -8,9 +8,15 @@ using Msgpack.Extensions;
 
 namespace Msgpack.Token
 {
-    public class MsgpackTokenParser
+    public class MTokenParser
     {
-        public static readonly MsgpackTokenParser Instance = new MsgpackTokenParser();
+        public static readonly MTokenParser Instance = new MTokenParser();
+
+        public MToken ReadToken(byte[] input)
+        {
+            using (var s = new MemoryStream(input))
+                return ReadToken(s);
+        }
 
         public MToken ReadToken(Stream stream)
         {

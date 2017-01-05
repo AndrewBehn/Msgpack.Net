@@ -9,6 +9,49 @@ using Msgpack.Token;
 
 namespace Msgpack
 {
+    public class MsgpackStreamReader : MsgpackReader
+    {
+        private MsgpackTokenReader _internalReader;
+
+        public MsgpackStreamReader(Stream stream)
+        {
+            _internalReader = new MsgpackTokenReader(MTokenParser.Instance.ReadToken(stream));
+        }
+
+        public override int ReadArraySize() => _internalReader.ReadArraySize();
+
+        public override bool? ReadBool() => _internalReader.ReadBool();
+
+        public override byte? ReadByte() => _internalReader.ReadByte();
+
+        public override byte[] ReadBytes() => _internalReader.ReadBytes();
+
+        public override double? ReadDouble() => _internalReader.ReadDouble();
+
+        public override float? ReadFloat() => _internalReader.ReadFloat();
+
+        public override int? ReadInt() => _internalReader.ReadInt();
+
+        public override long? ReadLong() => _internalReader.ReadLong();
+
+        public override MToken ReadNext() => _internalReader.ReadNext();
+
+        public override int ReadObjectSize() => _internalReader.ReadObjectSize();
+
+        public override sbyte? ReadSByte() => _internalReader.ReadSByte();
+
+        public override short? ReadShort() => _internalReader.ReadShort();
+
+        public override string ReadString() => _internalReader.ReadString();
+
+        public override uint? ReadUInt() => _internalReader.ReadUInt();
+
+        public override ulong? ReadULong() => _internalReader.ReadULong();
+
+        public override ushort? ReadUShort() => _internalReader.ReadUShort();
+    }
+
+
     public class MsgpackTokenReader : MsgpackReader
     {
         public MsgpackTokenReader(MToken token)
@@ -19,10 +62,14 @@ namespace Msgpack
         public MToken Token { get; private set; }
 
         private readonly IEnumerator<MToken> _tokenEnumerator;
-        public override void ReadNext()
+
+        public override MToken ReadNext()
         {
             if (_tokenEnumerator.MoveNext())
+            {
                 Token = _tokenEnumerator.Current;
+                return Token;
+            }
             else
                 throw new InvalidOperationException();
         }

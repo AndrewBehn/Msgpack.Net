@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Msgpack.Token;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Msgpack
 {
+    //TODO:  depreceate in favor of MsgpackTokenReader
     public abstract class MsgpackReader
     {
         public abstract int ReadArraySize();
         public abstract int ReadObjectSize();
-        public abstract void ReadNext();
+        public abstract MToken ReadNext();
         public abstract bool? ReadBool();
         public abstract byte? ReadByte();
         public abstract ushort? ReadUShort();

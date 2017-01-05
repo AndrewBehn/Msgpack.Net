@@ -34,7 +34,6 @@ namespace Msgpack.Token
             return (T)ToObject(typeof(T), serializer);
         }
 
-
         private object ToObject(Type type, MsgpackSerializer serializer = null)
         {
             var reader = new MsgpackTokenReader(this);

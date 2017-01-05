@@ -6,17 +6,13 @@ namespace Msgpack.Converters
 {
     public class NullableConverter : MsgpackConverter
     {
-        public NullableConverter(ConverterCache converterCache) : base(converterCache)
-        {
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return objectType.IsNullableType();
         }
 
         public override void WriteMsgpack(MsgpackWriter streamWriter, object value, Type objectType,
-            MsgpackSerializerSettings settings)
+            MsgpackConverterSettings settings)
         {
             if (value == null)
             {
